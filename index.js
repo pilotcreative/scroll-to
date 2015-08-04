@@ -12,28 +12,27 @@ var raf = require('raf');
 module.exports = scrollTo;
 
 /**
- * Scroll to `(x, y)`.
+ * Scroll to `(0, y)`.
  *
- * @param {Number} x
  * @param {Number} y
  * @api public
  */
 
-function scrollTo(x, y, options) {
+function scrollTo(y, options) {
   options = options || {};
 
   // start position
-  var start = scroll();
+  var start = window.pageYOffset || document.documentElement.scrollTop;
 
   // setup tween
-  var tween = Tween(start)
+  var tween = Tween({ top: start })
     .ease(options.ease || 'out-circ')
-    .to({ top: y, left: x })
+    .to({ top: y })
     .duration(options.duration || 1000);
 
   // scroll
   tween.update(function(progress) {
-    window.scrollTo(progress.left | 0, progress.top | 0);
+    window.scrollTo(0, progress.top | 0);
   });
 
   // handle end
@@ -50,17 +49,4 @@ function scrollTo(x, y, options) {
   animate();
 
   return tween;
-}
-
-/**
- * Return scroll position.
- *
- * @return {Object}
- * @api private
- */
-
-function scroll() {
-  var y = window.pageYOffset || document.documentElement.scrollTop;
-  var x = window.pageXOffset || document.documentElement.scrollLeft;
-  return { top: y, left: x };
 }

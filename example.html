@@ -41,10 +41,9 @@
     }
 
     events.bind(window, 'click', function(e) {
-      var x = e.pageX;
       var y = e.pageY;
-      console.log('scrolling to (%s, %s)', x, y);
-      scroll(x, y);
+      console.log('scrolling to (0, %s)', y);
+      scroll(y);
     });
 
   </script>
