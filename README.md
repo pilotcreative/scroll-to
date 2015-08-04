@@ -5,7 +5,7 @@
 
 ## Installation
 
-    $ component install component/scroll-to
+    $ component install porada/scroll-to
 
 ## API
 
@@ -13,7 +13,7 @@
 
   Scroll to the given point `(x, y)` with the given `options`:
 
-  - `ease` easing function defaulting to "out-circ" (view [ease](https://github.com/component/ease) for more)
+  - `ease` easing function defaulting to `out-circ` (view [`ease`](https://github.com/component/ease) for more)
   - `duration` animation duration defaulting to `1000`
 
 ```js

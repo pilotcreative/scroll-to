@@ -32,13 +32,13 @@ function scrollTo(x, y, options) {
     .duration(options.duration || 1000);
 
   // scroll
-  tween.update(function(o){
-    window.scrollTo(o.left | 0, o.top | 0);
+  tween.update(function(progress) {
+    window.scrollTo(progress.left | 0, progress.top | 0);
   });
 
   // handle end
-  tween.on('end', function(){
-    animate = function(){};
+  tween.on('end', function() {
+    animate = function() {};
   });
 
   // animate
@@ -48,7 +48,7 @@ function scrollTo(x, y, options) {
   }
 
   animate();
-  
+
   return tween;
 }
 
