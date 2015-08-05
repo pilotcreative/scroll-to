@@ -5,6 +5,8 @@
 var Tween = require('tween');
 var raf = require('raf');
 
+var html = document.documentElement;
+
 /**
  * Expose `scrollTo`.
  */
@@ -18,21 +20,19 @@ module.exports = scrollTo;
  * @api public
  */
 
-function scrollTo(y, options) {
-  options = options || {};
-
-  // start position
-  var start = window.pageYOffset || document.documentElement.scrollTop;
+function scrollTo(y) {
+  // scroll positions and duration
+  var start = window.pageYOffset || html.scrollTop;
+  var end = Math.min(y, html.offsetHeight - window.innerHeight);
+  var duration = Math.max(500, Math.abs(start - end));
 
   // setup tween
-  var tween = Tween({ top: start })
-    .ease(options.ease || 'out-circ')
-    .to({ top: y })
-    .duration(options.duration || 1000);
+  var tween = Tween({ y: start }).to({ y: end })
+    .ease('out-expo').duration(duration);
 
   // scroll
   tween.update(function(progress) {
-    window.scrollTo(0, progress.top | 0);
+    window.scrollTo(0, progress.y | 0);
   });
 
   // handle end
