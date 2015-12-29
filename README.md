@@ -5,7 +5,7 @@
 
 ## Installation
 
-    $ component install porada/scroll-to
+    $ component install pilotcreative/scroll-to
 
 ## API
 
